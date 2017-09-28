@@ -5,7 +5,7 @@ var controls;
 function addEventListeners(){
   window.addEventListener( 'resize', onWindowResize, false );
   container.addEventListener( 'mousemove', onContainerMouseMove, false );
-  container.addEventListener( 'click', onContainerMouseClick, false );
+  // container.addEventListener( 'click', onContainerMouseClick, false );
   controls.addEventListener( 'change', render );
 }
 

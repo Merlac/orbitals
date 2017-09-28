@@ -1,4 +1,5 @@
 var container;
+var planet;
 
 
 function init() {
@@ -19,15 +20,33 @@ function init() {
 	// BACKGROUND, LIGHTING
 	addSkybox();
 	var grid = new THREE.GridHelper(100000, 30, 0x111111 , 0x111111);
-	grid.position.y = -2000;
+	//grid.position.y = -2000;
 	scene.add(grid);
 	scene.add( new THREE.AmbientLight( 0x404040, 3 ) );
 
 
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 500000 );
-	camera.position.set(1000,1000,1000);
+	camera.position.set(0,1000,20000);
 	controls = new THREE.OrbitControls( camera );
+
+
+	// PLANET
+	var planetGeometry = new THREE.SphereGeometry(200000,32,32);
+	var planetColor = parseInt ( getRandomColor().replace("#","0x"), 16 );
+	console.log('Planet color: ' + planetColor);
+	var planetMaterials = [
+  new THREE.MeshLambertMaterial( { opacity:0.7,
+                                   color: planetColor,
+                                   transparent:true } ),
+  new THREE.MeshBasicMaterial( { color: 0xffffff,
+	                                 wireframe: true } )
+	];
+	//var planetMaterial = new THREE.MeshBasicMaterial({color: planetColor, wireframe: true});
+	planet = new THREE.SceneUtils.createMultiMaterialObject(planetGeometry, planetMaterials);
+	planet.position.set(120000,-150000,-100000);
+	scene.add(planet);
+
 
 	addEventListeners();
 
