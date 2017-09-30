@@ -45,7 +45,7 @@ atmosphereFragmentShader = [
 // MAIN ANIMATION FUNCTION
 function animate() {
 
-  planet.rotation.y += 0.0005;
+  planet.rotation.y += 0.0001;
   requestAnimationFrame( animate );
   controls.update();
   render();
