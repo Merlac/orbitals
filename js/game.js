@@ -1,8 +1,11 @@
-var container;
-var planet;
+var devMode = false;
 
+var container;
+var planet, planetAtmosphere, planetAtmosphereClouds;
+var camera;
 
 function init() {
+
 	// INITIALIZE CONTAINER & RENDERER
 	container = document.getElementById( 'container' );
 	renderer = new THREE.WebGLRenderer( { antialias: true, alpha : true } );
@@ -21,7 +24,7 @@ function init() {
 	addSkybox();
 	var grid = new THREE.GridHelper(100000, 30, 0x111111 , 0x111111);
 	//grid.position.y = -2000;
-	scene.add(grid);
+	//scene.add(grid);
 	scene.add( new THREE.AmbientLight( 0x404040, 3 ) );
 
 
@@ -34,7 +37,15 @@ function init() {
 	// PLANET
 	createPlanet();
 
+	// SHIPS
+	addShips();
+
 
 	addEventListeners();
 
+}
+
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

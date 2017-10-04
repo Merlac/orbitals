@@ -45,7 +45,8 @@ atmosphereFragmentShader = [
 // MAIN ANIMATION FUNCTION
 function animate() {
 
-  planet.rotation.y += 0.0001;
+  planet.rotation.y += 0.00005;
+  planetAtmosphereClouds.rotation.y += 0.00002
   requestAnimationFrame( animate );
   controls.update();
   render();
@@ -68,10 +69,10 @@ function addSkybox() {
   console.log('Sky colors: ' + skyColor1 + ' / ' + skyColor2);
 
   var uniforms = {
-      // topColor: {type: "c", value: new THREE.Color(0xdb4a13)},
-      // bottomColor: {type: "c", value: new THREE.Color(0x560b09)},
-      topColor: {type: "c", value: new THREE.Color(parseInt ( skyColor1.replace("#","0x"), 16 ))},
-      bottomColor: {type: "c", value: new THREE.Color(parseInt ( skyColor2.replace("#","0x"), 16 ))},
+      topColor: {type: "c", value: new THREE.Color(0x343e5c)},
+      bottomColor: {type: "c", value: new THREE.Color(0x9db782)},
+      // topColor: {type: "c", value: new THREE.Color(parseInt ( skyColor1.replace("#","0x"), 16 ))},
+      // bottomColor: {type: "c", value: new THREE.Color(parseInt ( skyColor2.replace("#","0x"), 16 ))},
       offset: {type: "f", value: 200000}, exponent: {type: "f", value: 4}
   }
   var skyMaterial= new THREE.ShaderMaterial( {
