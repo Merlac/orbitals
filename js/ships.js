@@ -11,7 +11,7 @@ function addShips(){
     var shipMaterial = new THREE.MeshBasicMaterial( { map: shipTexture, color: 0x979a9e } );
   }
 
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < shipCount; i++) {
     var shipGeometry = new THREE.BoxGeometry( getRandomInt( 450,450), 50, 70 );
     var ship = new THREE.Mesh( shipGeometry, shipMaterial );
     ship.position.set(shipArea1.x+getRandomInt(shipSpread*-1,shipSpread),shipArea1.y+getRandomInt(shipSpread*-1,shipSpread),shipArea1.z+getRandomInt(shipSpread*-1,shipSpread));
