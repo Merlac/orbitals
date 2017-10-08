@@ -8,7 +8,7 @@
 		<!-- <link rel="stylesheet" href="css/jquery-ui.min.css"> -->
 	</head>
 	<body>
-		<!-- <script>window.$ = window.jQuery = require('./js/jquery.min.js');</script> -->
+		<script>window.$ = window.jQuery = require('./js/jquery-3.2.1.min.js');</script>
 		<script src="js/three.min.js"></script>
 		<!-- <script src="js/jquery-ui.min.js"></script> -->
 		<script src='js/geometricglow/threex.dilategeometry.js'></script>
@@ -23,7 +23,13 @@
 		<script src="js/game.js"></script>
 
 		<div id="layout"></div>
-			<div id="debug"><strong>Node <script>document.write(process.versions.node)</script>, Chrome <script>document.write(process.versions.chrome)</script>, Electron <script>document.write(process.versions.electron)</script>.</strong><br/></div>
+			<div id="debug">
+				<strong>Node <script>document.write(process.versions.node)</script>, Chrome <script>document.write(process.versions.chrome)</script>, Electron <script>document.write(process.versions.electron)</script>.</strong><br/>
+				<br/><strong>Camera position: </strong><span class="camerapos">-</span>
+				<br/><strong>Camera target: </strong><span class="camerarot">-</span>
+				<br/>
+				<br/><strong>Temp: </strong><span class="temptext">-</span>
+			</div>
 	    <div id="container"></div>
 
     <script>

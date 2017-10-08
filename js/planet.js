@@ -11,14 +11,14 @@ function createPlanet(){
     {
         uniforms:
       {
-        "c":   { type: "f", value: 1 },
-        "p":   { type: "f", value: 2.0 },
+        "c":   { type: "f", value: 0.1 },
+        "p":   { type: "f", value: 1.5 },
         glowColor: { type: "c", value: new THREE.Color(0x5f94cf) },
-        viewVector: { type: "v3", value: camera.position }
+        viewVector: { type: "v3", value: new THREE.Vector3( 1, 0, -1 ) }
       },
       vertexShader:   atmosphereVertexShader,
       fragmentShader: atmosphereFragmentShader,
-      side: THREE.FrontSide,
+      side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending,
       transparent: true,
       depthWrite: false
@@ -31,14 +31,14 @@ function createPlanet(){
       side: THREE.FrontSide,
       blending: THREE.AdditiveBlending,
       map: cloudTexture,
-      opacity:1,
+      opacity:0.6,
       transparent: true
     }
   )
 
 
   // PLANET
-  var planetGeometry = new THREE.SphereGeometry(200000,64,64);
+  var planetGeometry = new THREE.SphereGeometry(100000,64,64);
   var planetColor = parseInt ( getRandomColor().replace("#","0x"), 16 );
   var planetMaterials = [
   new THREE.MeshLambertMaterial( { opacity:1,
@@ -51,15 +51,15 @@ function createPlanet(){
   } else {
     planet = new THREE.SceneUtils.createMultiMaterialObject(planetGeometry, planetMaterials);
   }
-  planet.position.set(120000,-150000,-100000);
-  planet.rotation.y = 100;
+
+  planet.rotation.y = 60;
   scene.add(planet);
 
   // ATMOSPHERE
   planetAtmosphere = new THREE.Mesh( planetGeometry.clone(), atmosphereMaterial.clone() );
-  planetAtmosphere.scale.multiplyScalar(1.01);
+  planetAtmosphere.scale.multiplyScalar(1.02);
   planetAtmosphereClouds = new THREE.Mesh( planetGeometry.clone(), planetAtmosphereCloudMaterial.clone() );
-  planetAtmosphereClouds.scale.multiplyScalar(1.005);
+  planetAtmosphereClouds.scale.multiplyScalar(1.01);
   planetAtmosphere.position.copy(planet.position);
   planetAtmosphereClouds.position.copy(planet.position);
 

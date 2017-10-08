@@ -45,10 +45,13 @@ atmosphereFragmentShader = [
 // MAIN ANIMATION FUNCTION
 function animate() {
 
-  planet.rotation.y += 0.00005;
-  planetAtmosphereClouds.rotation.y += 0.00002
+  planet.rotation.y += 0.00006;
+  planetAtmosphereClouds.rotation.y += 0.00003
   requestAnimationFrame( animate );
   controls.update();
+  $( ".camerapos" ).html( "X: " + Math.round(camera.position.x) + ' / Y: ' + Math.round(camera.position.y) + ' / Z: ' + Math.round(camera.position.z));
+  $( ".camerarot" ).html( "X: " + controls.target.x.toFixed(2) + ' / Y: ' + controls.target.y.toFixed(2) + ' / Z: ' + controls.target.z.toFixed(2));
+
   render();
 }
 
@@ -73,15 +76,15 @@ function addSkybox() {
       bottomColor: {type: "c", value: new THREE.Color(0x9db782)},
       // topColor: {type: "c", value: new THREE.Color(parseInt ( skyColor1.replace("#","0x"), 16 ))},
       // bottomColor: {type: "c", value: new THREE.Color(parseInt ( skyColor2.replace("#","0x"), 16 ))},
-      offset: {type: "f", value: 200000}, exponent: {type: "f", value: 4}
+      offset: {type: "f", value: 400000}, exponent: {type: "f", value: 3}
   }
   var skyMaterial= new THREE.ShaderMaterial( {
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
       uniforms: uniforms,
-      side: THREE.DoubleSide
+      side: THREE.BackSide
   } );
-  var skyGeometry = new THREE.SphereGeometry(200000, 256, 256);
+  var skyGeometry = new THREE.SphereGeometry(400000, 64, 64);
   var skyMesh = new THREE.Mesh(skyGeometry, skyMaterial);
   scene.add(skyMesh);
 }
@@ -91,4 +94,9 @@ function addSkybox() {
 function getRandomColor() {
     var color = '#' + Math.floor(Math.random()*16777215).toString(16);
     return color;
+}
+
+
+function addLights(){
+  scene.add( new THREE.AmbientLight( 0x404040, 3 ) );
 }

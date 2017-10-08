@@ -17,22 +17,22 @@ function init() {
 
 	// SCENE
 	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0x000000, 1, 500000 );
+	scene.fog = new THREE.Fog( 0x000000, 1, 1000000 );
 
 
 	// BACKGROUND, LIGHTING
 	addSkybox();
-	var grid = new THREE.GridHelper(100000, 30, 0x111111 , 0x111111);
+	addLights();
+	var grid = new THREE.GridHelper(500000, 30, 0x111111 , 0x111111);
 	//grid.position.y = -2000;
 	//scene.add(grid);
-	scene.add( new THREE.AmbientLight( 0x404040, 3 ) );
 
 
 	// CAMERA
-	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 500000 );
-	camera.position.set(0,1000,20000);
+	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000000 );
+	camera.position.set(12844,77017,93061);
 	controls = new THREE.OrbitControls( camera );
-
+	controls.target.set(99923,78277,-18363);
 
 	// PLANET
 	createPlanet();
